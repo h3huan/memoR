@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://jkfo4mwghiyi"]
+
+[ext_resource type="Script" path="res://mrthods/chara.gd" id="1_3sy60"]
+[ext_resource type="Texture2D" uid="uid://diukdm4gjsmdy" path="res://image/trash-0_1-Sheet.png" id="2_tjvpq"]
+[ext_resource type="Texture2D" uid="uid://uaubhpqckc8j" path="res://image/ui.png" id="3_wmtd8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgcll"]
+atlas = ExtResource("2_tjvpq")
+region = Rect2(0, 0, 38, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybryc"]
+atlas = ExtResource("2_tjvpq")
+region = Rect2(0, 0, 38, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5gxc"]
+atlas = ExtResource("2_tjvpq")
+region = Rect2(38, 0, 38, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8ubh"]
+atlas = ExtResource("2_tjvpq")
+region = Rect2(76, 0, 38, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qdk5s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgcll")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybryc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5gxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8ubh")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mxcd"]
+size = Vector2(15, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hy6a"]
+atlas = ExtResource("3_wmtd8")
+region = Rect2(80, 60, 8, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q441d"]
+atlas = ExtResource("3_wmtd8")
+region = Rect2(88, 60, 8, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_drp3h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hy6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q441d")
+}],
+"loop": true,
+"name": &"w",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_3sy60")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(21, 21)
+sprite_frames = SubResource("SpriteFrames_qdk5s")
+animation = &"run"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(25, 35)
+position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 21)
+shape = SubResource("RectangleShape2D_3mxcd")
+
+[node name="ask" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(19, 21)
+sprite_frames = SubResource("SpriteFrames_drp3h")
+animation = &"w"
